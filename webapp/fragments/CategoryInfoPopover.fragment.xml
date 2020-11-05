@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Popover title="Category information">
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button text="{i18n>categoryInfoCloseButton}" press="handleActionPress"/>
+			</OverflowToolbar>
+		</footer>
+		<f:SimpleForm editable="false" layout="ResponsiveGridLayout" binding="{}">
+			<f:content>
+				<Label text="{i18n>categoryInfoCategoryIdText}"/>
+				<Text text="{CategoryID}"/>
+				<Label text="{i18n>categoryInfoCategoryNameText}"/>
+				<Text text="{CategoryName}"/>
+				<Label text="{i18n>categoryInfoCategoryDescriptionText}"/>
+				<Text text="{Description}"/>
+			</f:content>
+		</f:SimpleForm>
+	</Popover>
+</core:FragmentDefinition>

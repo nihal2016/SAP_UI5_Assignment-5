@@ -1,0 +1,161 @@
+<mvc:View controllerName="com.yash.assignment5.controller.EmployeeDetails" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.uxap" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:m="sap.m"
+	xmlns:fb="sap.ui.comp.filterbar" xmlns:f="sap.f" xmlns:form="sap.ui.layout.form">
+	<ObjectPageLayout id="ObjectPageLayout">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				<expandedContent>
+					<m:Button id="backButton" text="{i18n>employeeDetailsBackButton}" type="Emphasized" press=".onBackButtonPress"/>
+				</expandedContent>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+		<headerContent>
+			<l:Grid hSpacing="0" defaultSpan="XL3 L3 M6 S6" containerQuery="true" class="sapUiSmallMarginTop">
+				<f:Avatar src="{PhotoPath}" displaySize="L"/>
+				<m:VBox>
+					<m:Title text="{FirstName} {LastName}"/>
+					<m:Text text="{Title}"/>
+					<m:Text text="{HomePhone}"/>
+				</m:VBox>
+				<m:VBox>
+					<m:Label text="{Country}"/>
+				</m:VBox>
+			</l:Grid>
+		</headerContent>
+		<sections>
+			<ObjectPageSection title="{i18n>employeeDetailsEmployeeInfoPageSectionTitle}">
+				<subSections>
+					<ObjectPageSubSection class="background">
+						<m:FlexBox justifyContent="End" alignItems="End" backgroundDesign="Solid">
+							<m:Button id="edit" class="sapUiSmallMarginEnd" text="{i18n>employeeDetailsEditButton}" enabled="true" press="handleEditPress"/>
+							<m:Button id="save" class="sapUiSmallMarginEnd" text="{i18n>employeeDetailsSaveButton}" type="Emphasized" visible="false" press="handleSavePress"/>
+							<m:Button id="cancel" text="{i18n>employeeDetailsCancelButton}" visible="false" press="handleCancelPress"/>
+						</m:FlexBox>
+					</ObjectPageSubSection>
+					<ObjectPageSubSection class="background">
+						<l:VerticalLayout id="formFragments"></l:VerticalLayout>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="{i18n>employeeDetailsOrdersPageSectionTitle}">
+				<subSections>
+					<ObjectPageSubSection class="background">
+						<l:VerticalLayout>
+							<l:VerticalLayout width="100%">
+								<fb:FilterBar defaultSpan="XL3 L3 M6 S12" reset="onReset" search="onSearch" showRestoreButton="true" showClearButton="true"
+									showGoOnFB="true">
+									<fb:filterGroupItems>
+										<fb:FilterGroupItem visibleInFilterBar="true" groupName="Orders Search" groupTitle="Orders Search" name="Search OrderID" label="OrderID">
+											<fb:control>
+												<m:ComboBox id="OrderIDCombobox" change=".onOrderIDSelected" placeholder="{i18n>orderIdFilterComboboxPlaceholder}" showSecondaryValues="true" filterSecondaryValues="true"
+													items="{ path: '/Orders', sorter: { path: 'OrderID' } }">
+													<core:ListItem text="{OrderID}"/>
+												</m:ComboBox>
+											</fb:control>
+										</fb:FilterGroupItem>
+										<fb:FilterGroupItem visibleInFilterBar="true" groupName="Orders Search" groupTitle="Group1" name="B" label="CustomerID">
+											<fb:control>
+												<m:ComboBox id="CustomerIDCombobox" change=".onCustomerIDSelected" placeholder="{i18n>customerIdFilterComboboxPlaceholder}" showSecondaryValues="true"
+													filterSecondaryValues="true" items="{ path: '/Customers', sorter: { path: 'CustomerID' } }">
+													<core:ListItem text="{CustomerID}"/>
+												</m:ComboBox>
+											</fb:control>
+										</fb:FilterGroupItem>
+										<fb:FilterGroupItem visibleInFilterBar="true" groupName="Orders Search" groupTitle="Group1" name="C" label="ShipVia">
+											<fb:control>
+												<m:ComboBox id="ShipViaCombobox" change=".onShipViaSelected" placeholder="{i18n>shipViaFilterComboboxPlaceholder}" showSecondaryValues="true" filterSecondaryValues="true"
+													items="{ path: '/Shippers', sorter: { path: 'ShipperID' } }">
+													<core:ListItem text="{ShipperID}"/>
+												</m:ComboBox>
+											</fb:control>
+										</fb:FilterGroupItem>
+									</fb:filterGroupItems>
+								</fb:FilterBar>
+							</l:VerticalLayout>
+							<m:Table id="ordersListTable" items="{/Orders}">
+								<m:columns>
+									<m:Column width="12em">
+										<m:Text text="{i18n>orderListTableOrderIdColumn}"/>
+									</m:Column>
+									<m:Column hAlign="End">
+										<m:Text text="{i18n>orderListTableCustomerIdColumn}"/>
+									</m:Column>
+									<m:Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+										<m:Text text="{i18n>orderListTableShipViaColumn}"/>
+									</m:Column>
+									<m:Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+										<m:Text text="{i18n>orderListTableShipNameColumn}"/>
+									</m:Column>
+									<m:Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+										<m:Text text="{i18n>orderListTableFreightColumn}"/>
+									</m:Column>
+									<m:Column minScreenWidth="Tablet" demandPopin="true">
+										<m:Text text="{i18n>orderListTableShipCountryColumn}"/>
+									</m:Column>
+								</m:columns>
+								<m:items>
+									<m:ColumnListItem vAlign="Middle" type="Active" press=".goToOrderDetailsPage">
+										<m:cells>
+											<m:ObjectIdentifier title="{i18n>orderListTableOrderIDColumnCellTitle}" text="{OrderID}"/>
+											<m:Button type="Transparent" text="{CustomerID}" press=".openPopOverCustomerInfo"/>
+											<m:Text text="{ShipVia}"/>
+											<m:Text text="{ShipName}"/>
+											<m:Text text="{Freight}"/>
+											<m:Text text="{ShipCountry}"/>
+										</m:cells>
+									</m:ColumnListItem>
+								</m:items>
+							</m:Table>
+						</l:VerticalLayout>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="{i18n>employeeDetailsTerritoriesPageSectionTitle}">
+				<subSections>
+					<ObjectPageSubSection class="background" >
+						<l:VerticalLayout>
+							<l:VerticalLayout width="100%">
+								<fb:FilterBar defaultSpan="XL3 L3 M6 S12" reset="onReset" search="onSearch" showRestoreButton="true" showClearButton="true"
+									showGoOnFB="true">
+									<fb:filterGroupItems>
+										<fb:FilterGroupItem visibleInFilterBar="true" groupName="Territory Search" groupTitle="Territory Search" name="Search TerritoryID"
+											label="TerritoryID">
+											<fb:control>
+												<m:ComboBox id="TerritoryIDCombobox" change=".onTerritoryIDSelected" placeholder="{i18n>territoryIdFilterComboboxPlaceholder}" showSecondaryValues="true"
+													filterSecondaryValues="true" items="{ path: '/Territories', sorter: { path: 'TerritoryID' } }">
+													<core:ListItem text="{TerritoryID}"/>
+												</m:ComboBox>
+											</fb:control>
+										</fb:FilterGroupItem>
+									</fb:filterGroupItems>
+								</fb:FilterBar>
+							</l:VerticalLayout>
+							<m:Table id="territoryListTable" items="{/Territories}">
+								<m:columns>
+									<m:Column width="12em">
+										<m:Text text="{i18n>territoryListTableTerritoryIdColumn}"/>
+									</m:Column>
+									<m:Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+										<m:Text text="{i18n>territoryListTableTerritoryDescriptionColumn}"/>
+									</m:Column>
+									<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="End">
+										<m:Text text="{i18n>territoryListTableRegionIDColumn}"/>
+									</m:Column>
+								</m:columns>
+								<m:items>
+									<m:ColumnListItem vAlign="Middle" type="Active">
+										<m:cells>
+											<m:ObjectIdentifier title="{i18n>territoryListTableTerritoryIdColumnCellTitle}" text="{TerritoryID}"/>
+											<m:Text text="{TerritoryDescription}"/>
+											<m:Text text="{RegionID}"/>
+										</m:cells>
+									</m:ColumnListItem>
+								</m:items>
+							</m:Table>
+						</l:VerticalLayout>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+	</ObjectPageLayout>
+</mvc:View>

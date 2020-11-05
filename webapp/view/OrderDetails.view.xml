@@ -1,0 +1,60 @@
+<mvc:View controllerName="com.yash.assignment5.controller.OrderDetails" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:f="sap.f" xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" showNavButton="true" navButtonPress="onBackButtonPress" title="{i18n>OrderDetails}">
+					<content>
+						<l:VerticalLayout width="100%">
+							<fb:FilterBar defaultSpan="XL3 L3 M6 S12" reset="onReset" search="onSearch" showRestoreButton="true" showClearButton="true"
+								showGoOnFB="true">
+								<fb:filterGroupItems>
+									<fb:FilterGroupItem visibleInFilterBar="true" groupName="Order_details Search" groupTitle="Order_details Search" name="Search ProductID"
+										label="ProductID">
+										<fb:control>
+											<ComboBox id="productIdCombobox" change=".onProductIdSelected" placeholder="{i18n>productIDFilterComboboxPlaceholder}" showSecondaryValues="true"
+												filterSecondaryValues="true" items="{ path: '/Products', sorter: { path: 'ProductID' } }">
+												<core:ListItem text="{ProductID}"/>
+											</ComboBox>
+										</fb:control>
+									</fb:FilterGroupItem>
+								</fb:filterGroupItems>
+							</fb:FilterBar>
+						</l:VerticalLayout>
+						<f:DynamicPage>
+							<f:content>
+								<Table id="orderDetailsTable" items="{/Order_Details}">
+									<columns>
+										<Column width="12em">
+											<Text text="{i18n>orderDetailsTableProductIDColumn}"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text text="{i18n>orderDetailsTableUnitPriceColumn}"/>
+										</Column>
+										<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+											<Text text="{i18n>orderDetailsTableQuantityColumn}"/>
+										</Column>
+										<Column hAlign="End">
+											<Text text="{i18n>orderDetailsTableDiscountColumn}"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem vAlign="Middle" type="Active" press=".goToProductDetails">
+											<cells>
+												<ObjectIdentifier title="{i18n>orderDetailsTableProductIDColumnCellTitle}" text="{ProductID}"/>
+												<Text text="{UnitPrice}"/>
+												<Text text="{Quantity}"/>
+												<Text text="{Discount}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</f:content>
+						</f:DynamicPage>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

@@ -1,0 +1,93 @@
+<mvc:View controllerName="com.yash.assignment5.controller.EmployeesList" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:fb="sap.ui.comp.filterbar" xmlns:f="sap.f" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						<l:VerticalLayout width="100%">
+							<fb:FilterBar defaultSpan="XL3 L3 M6 S12" reset="onReset" search="onSearch" showRestoreButton="true" showClearButton="true"
+								showGoOnFB="true">
+								<fb:filterGroupItems>
+									<fb:FilterGroupItem visibleInFilterBar="true" groupName="Employees Search" groupTitle="Employees Search" name="Search employeeId"
+										label="EmployeeId">
+										<fb:control>
+											<ComboBox id="employeeIdCombobox" change=".onEmployeeIdSelected" placeholder="{i18n>employeeIdFilterComboboxPlaceholder}"
+												showSecondaryValues="true" filterSecondaryValues="true" items="{ path: '/Employees', sorter: { path: 'EmployeeID' } }">
+												<core:ListItem text="{EmployeeID}"/>
+											</ComboBox>
+										</fb:control>
+									</fb:FilterGroupItem>
+									<fb:FilterGroupItem visibleInFilterBar="true" groupName="Employees Search" groupTitle="Group1" name="B" label="City">
+										<fb:control>
+											<ComboBox id="cityCombobox" change=".onCitySelected" placeholder="{i18n>employeeCityFilterComboboxPlaceholder}" showSecondaryValues="true"
+												filterSecondaryValues="true">
+												<core:ListItem text="{i18n>employeeCityFilterComboboxItem1}"/>
+												<core:ListItem text="{i18n>employeeCityFilterComboboxItem2}"/>
+												<core:ListItem text="{i18n>employeeCityFilterComboboxItem3}"/>
+												<core:ListItem text="{i18n>employeeCityFilterComboboxItem4}"/>
+												<core:ListItem text="{i18n>employeeCityFilterComboboxItem5}"/>
+											</ComboBox>
+										</fb:control>
+									</fb:FilterGroupItem>
+									<fb:FilterGroupItem visibleInFilterBar="true" groupName="Employees Search" groupTitle="Group1" name="C" label="Country">
+										<fb:control>
+											<ComboBox id="countryCombobox" change=".onCountryelected" placeholder="{i18n>employeeCountryFilterComboboxPlaceholder}"
+												showSecondaryValues="true" filterSecondaryValues="true">
+												<core:ListItem text="{i18n>employeeCountryFilterComboboxItem1}"/>
+												<core:ListItem text="{i18n>employeeCountryFilterComboboxItem2}"/>
+											</ComboBox>
+										</fb:control>
+									</fb:FilterGroupItem>
+									<fb:FilterGroupItem visibleInFilterBar="true" groupName="Employees Search" groupTitle="Group1" name="D" label="Region">
+										<fb:control>
+											<ComboBox id="regionCombobox" change=".onRegionSelected" placeholder="{i18n>employeeRegionFilterComboboxPlaceholder}"
+												showSecondaryValues="true" filterSecondaryValues="true">
+												<core:ListItem text="{i18n>employeeRegionFilterComboboxItem1}"/>
+												<core:ListItem text="{i18n>employeeRegionFilterComboboxItem2}"/>
+											</ComboBox>
+										</fb:control>
+									</fb:FilterGroupItem>
+								</fb:filterGroupItems>
+							</fb:FilterBar>
+						</l:VerticalLayout>
+						<f:DynamicPage>
+							<f:content>
+								<Table id="employeesListTable" items="{/Employees}">
+									<columns>
+										<Column width="12em">
+											<Text text="{i18n>employeesListTableEmployeeIdColumn}"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text text="{i18n>employeesListTableNameColumn}"/>
+										</Column>
+										<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+											<Text text="{i18n>employeesListTableTitleColumn}"/>
+										</Column>
+										<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+											<Text text="{i18n>employeesListTableCountryColumn}"/>
+										</Column>
+										<Column hAlign="End">
+											<Text text="{i18n>employeesListTableHireDateColumn}"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem vAlign="Middle" type="Active" press=".goToEmployeePage">
+											<cells>
+												<ObjectIdentifier title="{i18n>employeesListTableEmployeeIdColumnCellTitle}" text="{EmployeeID}"/>
+												<Text text="{FirstName} {LastName}"/>
+												<Text text="{Title}"/>
+												<Text text="{Country}"/>
+												<Text text="{parts:['HireDate'],formatter:'.formatter.date'}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</f:content>
+						</f:DynamicPage>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

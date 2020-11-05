@@ -1,0 +1,31 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Popover title="Customer Inforamtion">
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button text="{i18n>customerInfoCloseButton}" press="handleActionPress"/>
+			</OverflowToolbar>
+		</footer>
+		<f:SimpleForm editable="false" layout="ResponsiveGridLayout" binding="{}">
+			<f:content>
+				<Label text="{i18n>customerInfoCustomerIDText}"/>
+				<Text text="{CustomerID}"/>
+				<Label text="{i18n>customerInfoNameText}"/>
+				<Text text="{ContactName}"/>
+				<Label text="{i18n>customerInfoCompanyNameText}"/>
+				<Text text="{CompanyName}"/>
+				<Label text="{i18n>customerInfoContactTitleText}"/>
+				<Text text="{ContactTitle}"/>
+				<Label text="{i18n>customerInfoContactTitleText}"/>
+				<Text text="{Phone}"/>
+				<Text text="{i18n>customerInfoContactTitleText}"/>
+				<Label text="{i18n>customerInfoStreetText}"/>
+				<Text text="{Address}"/>
+				<Label text="{i18n>customerInfoPostalCodeCityText}"/>
+				<Text text="{PostalCode}, {City}"/>
+				<Label text="{i18n>customerInfoCountryText}"/>
+				<Text text="{Country}"/>
+			</f:content>
+		</f:SimpleForm>
+	</Popover>
+</core:FragmentDefinition>

@@ -1,0 +1,33 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.yash.assignment5.controller.ProductDetails"
+	xmlns:f="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page showNavButton="true" navButtonPress="onBackButtonPress" title="{i18n>productDetailsTitle} '{ProductID}' ">
+				<content>
+					<f:SimpleForm editable="false" layout="ResponsiveGridLayout">
+						<f:content>
+							<Label text="{i18n>productDetailsProductName}"/>
+							<Text text="{ProductName}"/>
+							<Label text="{i18n>productDetailsSupplierId}"/>
+							<Link press=".openPopOverSupplierInfo" text="{SupplierID}"/>
+							<Label text="{i18n>productDetailsCategoryId}"/>
+							<Link press=".openPopOverCategoryInfo" text="{CategoryID}"/>
+							<Label text="{i18n>productDetailsQuantityPerUnit}"/>
+							<Text text="{QuantityPerUnit}"/>
+							<Label text="{i18n>productDetailsUnitPrice}"/>
+							<Text text="{UnitPrice}"/>
+							<Label text="{i18n>productDetailsStock}"/>
+							<Text text="{UnitsInStock}"/>
+							<Label text="{i18n>productDetailsUnitsInOrder}"/>
+							<Text text="{UnitsOnOrder}"/>
+							<Label text="{i18n>productDetailsReorder}"/>
+							<Text text="{ReorderLevel}"/>
+							<Label text="{i18n>productDetailsDiscontinued}"/>
+							<Text text="{Discontinued}"/>
+						</f:content>
+					</f:SimpleForm>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

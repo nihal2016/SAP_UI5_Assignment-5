@@ -1,0 +1,42 @@
+<core:FragmentDefinition xmlns:m="sap.m" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<l:Grid containerQuery="true" defaultSpan="XL3 L3 M6 S12">
+		<form:SimpleForm editable="false" layout="ResponsiveGridLayout" title="{i18n>EmployeeInfoPersonalDetailTitle}" labelSpanXL="3"
+			labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0"
+			columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+			<form:content>
+				<m:Label text="{i18n>EmployeeInfoFirstName}"/>
+				<m:Text text="{FirstName}"/>
+				<m:Label text="{i18n>EmployeeInfoLastName}"/>
+				<m:Text text="{LastName}"/>
+				<m:Label text="{i18n>EmployeeInfoBirthDate}"/>
+				<m:Text text="{parts:['BirthDate'],formatter:'.formatter.date'}"/>
+			</form:content>
+		</form:SimpleForm>
+		<form:SimpleForm editable="false" layout="ResponsiveGridLayout" title="{i18n>EmployeeInfoAddressDetailTitle}" labelSpanXL="3" labelSpanL="3"
+			labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1"
+			columnsL="1" columnsM="1" singleContainerFullSize="false">
+			<form:content>
+				<m:Label text="{i18n>EmployeeInfoAddress}"/>
+				<m:Text text="{Address}"/>
+				<m:Label text="{i18n>EmployeeInfoCity}"/>
+				<m:Text text="{City}"/>
+				<m:Label text="{i18n>EmployeeInfoRegion}"/>
+				<m:Text text="{Region}"/>
+				<m:Label text="{i18n>EmployeeInfoPostalCode}"/>
+				<m:Text text="{PostalCode}"/>
+				<m:Label text="{i18n>EmployeeInfoCountry}"/>
+				<m:Text text="{Country}"/>
+			</form:content>
+		</form:SimpleForm>
+		<form:SimpleForm editable="false" layout="ResponsiveGridLayout" title="Contact Details" labelSpanXL="3" labelSpanL="3" labelSpanM="3"
+			labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+			singleContainerFullSize="false">
+			<form:content>
+				<m:Label text="{i18n>EmployeeInfoHomePhone}"/>
+				<m:Text text="{HomePhone}"/>
+				<m:Label text="{i18n>EmployeeInfoExtension}"/>
+				<m:Text text="{Extension}"/>
+			</form:content>
+		</form:SimpleForm>
+	</l:Grid>
+</core:FragmentDefinition>
